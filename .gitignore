@@ -67,8 +67,7 @@ local.properties
 .classpath
 
 # others
-.setting
-*/target/*
+/target/
 
 ### Eclipse Patch ###
 # Spring Boot Tooling
