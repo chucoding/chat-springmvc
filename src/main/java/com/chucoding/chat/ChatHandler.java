@@ -19,7 +19,8 @@ private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		for(WebSocketSession s : sessionList) { // 웹 소켓 서버에 접속한 Session 모두에게 메시지를 전달해야 하므로
-			s.sendMessage(new TextMessage(session.getPrincipal().getName() + ":" + message.getPayload()));
+			System.out.println(s.toString());
+			s.sendMessage(new TextMessage(session.getId() + ":" + message.getPayload()));
 		}
 	}
 	
