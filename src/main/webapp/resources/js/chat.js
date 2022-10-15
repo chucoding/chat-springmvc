@@ -1,9 +1,3 @@
-//전송 버튼 누르는 이벤트
-function send() {
-	sendMessage();
-	$('#msg').val('')
-}
-
 var sock = new SockJS('http://localhost:8080/chat');
 sock.onmessage = onMessage;
 sock.onclose = onClose;
@@ -11,6 +5,7 @@ sock.onopen = onOpen;
 
 function sendMessage() {
 	sock.send($("#msg").val());
+	$("#msg").val('');
 }
 //서버에서 메시지를 받았을 때
 function onMessage(msg) {
@@ -33,28 +28,22 @@ function onMessage(msg) {
 	
     //로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
 	if(sessionId == cur_session){
-		var str = "<p>" + sessionId + " : " + message + "</p><br/>";
+		var str = "<p>" + sessionId + " : " + message + "</p>";
 		$("#msgArea").append(str);
 	}
 	else{
-		var str = "<p>" + sessionId + " : " + message + "</p><br/>";
+		var str = "<p>" + sessionId + " : " + message + "</p>";
 		$("#msgArea").append(str);
 	}
 	
 }
+
 //채팅창에서 나갔을 때
 function onClose(evt) {
-	
-	var user = '${user}';
-	var str = user + " 님이 퇴장하셨습니다.<br/>";
-	
-	$("#msgArea").append(str);
+	$("#msgArea").append("user님이 퇴장하셨습니다."); //TODO user대신 채팅방 들어온 id값으로
 }
+
 //채팅창에 들어왔을 때
 function onOpen(evt) {
-	
-	var user = '${user}';
-	var str = user + "님이 입장하셨습니다.<br/>";
-	
-	$("#msgArea").append(str);
+	$("#msgArea").append("user님이 입장하셨습니다."); //TODO user대신 채팅방 들어온 id값으로
 }

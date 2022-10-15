@@ -1,18 +1,11 @@
 package com.chucoding.chat;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class ChatController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(ChatController.class);
-	
-	@RequestMapping(value = "/chat", method = RequestMethod.GET)
-	public void chat(String id) {
-		logger.info("채팅룸 입장 id : " + id);
-	}
+
+	@GetMapping("/chat")
+	public void chat() {}
 }
