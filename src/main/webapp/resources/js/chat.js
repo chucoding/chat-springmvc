@@ -1,4 +1,4 @@
-var sock = new SockJS('http://localhost:8080/chat');
+var sock = new SockJS('https://chat-springmvc.herokuapp.com/chat');
 sock.onmessage = onMessage;
 sock.onclose = onClose;
 sock.onopen = onOpen;
